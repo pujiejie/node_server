@@ -21,15 +21,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set session
 app.use(session({
   secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
+  resave: true,
+  rolling: true,
+  saveUninitialized: false,
   cookie: { secure: false, maxAge: 800000 },
   name: 'ivan'
 }))
 
+// set router
 app.use('/', indexRouter);
 app.use('/', testRouter);
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
